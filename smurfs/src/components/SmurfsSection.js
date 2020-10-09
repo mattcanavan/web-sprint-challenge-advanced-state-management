@@ -1,14 +1,22 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import fetchChars from '../actions/smurfsSectionActions';
 
 class SmurfsSection extends Component {
     state = {
         smurfList: []
     }
 
+    // componentDidMount() {
+    //     fetch('http://localhost:3333/smurfs')
+    //     .then(res => res.json())
+    //     .then(data => this.setState({smurfList: data}))
+    // } 
+    // moved to smurfSectionActions (great name)
+
     componentDidMount() {
-        fetch('http://localhost:3333/smurfs')
-        .then(res => res.json())
-        .then(data => this.setState({smurfList: data}))
+        this.props.fetchChars();
     }
 
     render() {
@@ -32,4 +40,4 @@ class SmurfsSection extends Component {
     }
 }
 
-export default SmurfsSection;
+export default connect(null, { fetchChars })(SmurfsSection);

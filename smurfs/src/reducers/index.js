@@ -3,4 +3,4 @@ import formReducer from './formReducer';
 
 export default combineReducers({
     characters: formReducer,
-})
+});
