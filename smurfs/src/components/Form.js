@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { postChar } from '../actions/smurfActions';
 
 class Form extends Component {
     constructor(props) {
@@ -26,15 +28,18 @@ class Form extends Component {
             height: this.state.height,
         }
 
-        fetch('http://localhost:3333/smurfs', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(newSmurf)
-        })
-        .then(res => res.json())
-        .then(data => console.log(data));
+        // fetch('http://localhost:3333/smurfs', {
+        //     method: 'POST',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(newSmurf)
+        // })
+        // .then(res => res.json())
+        // .then(data => console.log(data));
+        //moved to action
+
+        this.props.postChar(newSmurf)
     }
 
     render() {
@@ -81,4 +86,4 @@ class Form extends Component {
     }
 }
 
-export default Form;
+export default connect(null, { postChar })(Form);

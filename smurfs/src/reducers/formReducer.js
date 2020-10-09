@@ -7,13 +7,19 @@ const initalState = {
 }
 
 export default function (state = initalState, action) {
-    switch(action.type){
+    switch (action.type) {
         case FETCH_CHARS:
             return {
                 ...state,
                 allSmurfs: action.payload,
             };
-        
+
+        case NEW_CHAR:
+        console.log(state)    
+        return {
+                ...state,
+            };
+
         default:
             return state
     }

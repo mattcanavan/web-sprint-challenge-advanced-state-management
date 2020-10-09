@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import fetchChars from '../actions/smurfsSectionActions';
+import fetchChars from '../actions/smurfActions';
 
 class SmurfsSection extends Component {
-    state = {
-        smurfList: []
-    }
+    // state = {
+    //     smurfList: []
+    // }
+    // moved to application state
 
     // componentDidMount() {
     //     fetch('http://localhost:3333/smurfs')
@@ -21,7 +22,7 @@ class SmurfsSection extends Component {
 
     render() {
 
-        const smurfItems = this.state.smurfList.map(singleSmurf => (
+        const smurfItems = this.props.smurfList.map(singleSmurf => (
             <div key={singleSmurf.id}>
                 <h3>Name: {singleSmurf.name}</h3>
                 <h3>ID: {singleSmurf.id}</h3>
@@ -40,4 +41,8 @@ class SmurfsSection extends Component {
     }
 }
 
-export default connect(null, { fetchChars })(SmurfsSection);
+const mapStateToProps = state => ({
+    smurfList: state.dumbNameReducer.allSmurfs
+});
+
+export default connect(mapStateToProps, { fetchChars })(SmurfsSection);
